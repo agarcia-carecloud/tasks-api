@@ -51,6 +51,8 @@ router.post("/signup", (req, res, next) => {
       password: hashPass,
     });
 
+    //change all render methods to return a status in JSON
+
     newUser
       .save()
       .then(() => {
