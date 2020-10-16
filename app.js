@@ -8,6 +8,7 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const cors = require("cors");
 
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
@@ -38,13 +39,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //set up Cors
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   next();
+// });
 
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin: ["http://localhost:3000", "blah.reactappdomain.com"],
-//   })
-// );
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:3000", "blah.reactappdomain.com"],
+  })
+);
 
 // Express View engine setup
 
