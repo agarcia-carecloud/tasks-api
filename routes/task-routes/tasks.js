@@ -22,6 +22,10 @@ router.get("/all-tasks", (req, res, next) => {
     );
 });
 
+// router.get("details/task-details/:taskId", (req, res) => {
+//   Task.findById
+// })
+
 router.put("/update", (req, res) => {
   Task.findByIdAndUpdate(req.body.taskId, req.body, { new: true })
     .then((updatedTask) => {

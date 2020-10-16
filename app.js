@@ -14,7 +14,7 @@ const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 
 mongoose
-  .connect("mongodb://localhost/tasks-api", { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -36,6 +36,13 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: ["http://localhost:3000", "blah.reactappdomain.com"],
+//   })
+// );
 
 // Express View engine setup
 
@@ -81,7 +88,7 @@ const index = require("./routes/index");
 app.use("/", index);
 
 app.use("/", require("./routes/index"));
-app.use("/auth", require("./routes/auth"));
-app.use("/task", require("./routes/task-routes/tasks"));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/task", require("./routes/task-routes/tasks"));
 
 module.exports = app;
