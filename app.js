@@ -37,6 +37,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//set up Cors
+
 // app.use(
 //   cors({
 //     credentials: true,
